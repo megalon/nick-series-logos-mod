@@ -18,10 +18,13 @@ namespace NickSeriesLogosMod.Patches
             string stagesHierarchyPathLocal  = "Canvas/MainContainer/LargePreviewLocal/StageMask/RenderVisualizer/Stages";
             string stagesHierarchyPathOnline = "Canvas/MainContainer/LargePreviewOnline/StageMask/RenderVisualizer/Stages";
 
-            float scale = 0.125f;
-            float x = 568;
+            float scale = 0.20f;
+            
+            float xlocal = 568;
             float ylocal = 791;
-            float yonline = 550;
+
+            float xonline = 500;
+            float yonline = 500;
 
             var stagesLocal  = __instance.gameObject.transform.Find(stagesHierarchyPathLocal);
             var stagesOnline = __instance.gameObject.transform.Find(stagesHierarchyPathOnline);
@@ -39,14 +42,14 @@ namespace NickSeriesLogosMod.Patches
             rectTransform.anchorMax = Vector2.one;
             rectTransform.sizeDelta = Vector2.zero;
             rectTransform.localScale = new Vector3(scale, scale, scale);
-            rectTransform.anchoredPosition = new Vector2(x, ylocal);
+            rectTransform.anchoredPosition = new Vector2(xlocal, ylocal);
 
             showLogoObj.AddComponent<CanvasRenderer>();
             showLogoObj.AddComponent<Image>();
 
             PopulateStages(stagesLocal);
 
-            rectTransform.anchoredPosition = new Vector2(x, yonline);
+            rectTransform.anchoredPosition = new Vector2(xonline, yonline);
             PopulateStages(stagesOnline);
         }
 
