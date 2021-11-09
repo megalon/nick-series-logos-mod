@@ -1,0 +1,91 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy &quot;$(ProjectDir)$(OutDir)$(TargetFileName)&quot; &quot;$(GameDir)\BepInEx\plugins&quot; /Y" />
+  </Target>
+
+  <ItemGroup>
+    <None Remove="Images\alien.png" />
+    <None Remove="Images\apple.png" />
+    <None Remove="Images\athlete.png" />
+    <None Remove="Images\chimera.png" />
+    <None Remove="Images\duo.png" />
+    <None Remove="Images\kite.png" />
+    <None Remove="Images\mascot.png" />
+    <None Remove="Images\moon.png" />
+    <None Remove="Images\narrator.png" />
+    <None Remove="Images\plasma.png" />
+    <None Remove="Images\rascal.png" />
+    <None Remove="Images\rival.png" />
+    <None Remove="Images\snake.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\alien.png" />
+    <EmbeddedResource Include="Images\apple.png" />
+    <EmbeddedResource Include="Images\athlete.png" />
+    <EmbeddedResource Include="Images\chimera.png" />
+    <EmbeddedResource Include="Images\duo.png" />
+    <EmbeddedResource Include="Images\kite.png" />
+    <EmbeddedResource Include="Images\mascot.png" />
+    <EmbeddedResource Include="Images\moon.png" />
+    <EmbeddedResource Include="Images\narrator.png" />
+    <EmbeddedResource Include="Images\plasma.png" />
+    <EmbeddedResource Include="Images\rascal.png" />
+    <EmbeddedResource Include="Images\rival.png" />
+    <EmbeddedResource Include="Images\snake.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="NickSeriesLogosMod.csproj.user" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(GameDir)\BepInEx\core\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(GameDir)\BepInEx\core\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(GameDir)\Nickelodeon All-Star Brawl_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>$(GameDir)\BepInEx\core\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(GameDir)\BepInEx\core\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SlimeModdingUtilities">
+      <HintPath>$(GameDir)\BepInEx\core\SlimeModdingUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(GameDir)\Nickelodeon All-Star Brawl_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(GameDir)\Nickelodeon All-Star Brawl_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(GameDir)\Nickelodeon All-Star Brawl_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>$(GameDir)\Nickelodeon All-Star Brawl_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(GameDir)\Nickelodeon All-Star Brawl_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>$(GameDir)\Nickelodeon All-Star Brawl_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>$(GameDir)\Nickelodeon All-Star Brawl_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>$(GameDir)\Nickelodeon All-Star Brawl_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
