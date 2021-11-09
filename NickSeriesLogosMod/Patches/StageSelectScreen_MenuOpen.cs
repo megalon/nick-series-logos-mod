@@ -37,31 +37,30 @@ namespace NickSeriesLogosMod.Patches
                     RenderImage renderImage = stage.GetComponent<RenderImage>();
                     var showId = renderImage.StageMetaData.showId;
 
-                    // Get the image that matches the show ID here
-                    Plugin.LogInfo($"Stage: \"{stage.name}\" ShowID: \"{showId}\"");
-
                     // Skip empty string
                     if (showId == null || showId.Equals(string.Empty)) continue;
 
-                    var resourceString = $"NickSeriesLogosMod.Images.{showId}.png";
-
-                    Plugin.LogInfo($"resourceString: {resourceString}");
+                    // Skip if we don't have an image for this id
+                    if (!Plugin.logoSpritesDict.ContainsKey(showId))
+                    {
+                        Plugin.LogWarning($"No image found for show \"{showId}\". Skipping...");
+                        continue;
+                    }
 
                     try
                     {
-                        Sprite imageSprite = SMU.Utilities.ImageHelper.LoadSpriteFromResources(resourceString);
                         GameObject obj = GameObject.Instantiate(showLogoObj, stage);
                         Image img = obj.GetComponent<Image>();
-                        img.sprite = imageSprite;
+                        img.sprite = Plugin.logoSpritesDict[showId];
 
                         // 16 is menuUI
                         obj.layer = 16;
+
+                        Plugin.LogDebug($"Loaded image for show \"{showId}\"");
                     } catch
                     {
-                        Debug.LogWarning($"No image found for {showId}. Skipping...");
+                        Debug.LogError($"Could not load image for {showId}!");
                     }
-
-                    Plugin.LogInfo($"Loaded image for show \"{showId}\"");
                 }
             }
             else

@@ -6,6 +6,7 @@ using System.Reflection;
 using BepInEx.Configuration;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine;
 
 namespace NickSeriesLogosMod
 {
@@ -13,6 +14,7 @@ namespace NickSeriesLogosMod
     public class Plugin : BaseUnityPlugin
     {
         internal static Plugin Instance;
+        public static Dictionary<string, Sprite> logoSpritesDict;
         private void Awake()
         {
             Logger.LogDebug($"Plugin {PluginInfo.PLUGIN_NAME} is loaded!");
@@ -30,12 +32,18 @@ namespace NickSeriesLogosMod
             // Harmony patches
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
 
-            var resourceNames = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+            logoSpritesDict = new Dictionary<string, Sprite>();
 
-            LogDebug("Resource Names:");
+            // Load all the image resources
+            var resourceNames = Assembly.GetExecutingAssembly().GetManifestResourceNames();
             for (int i = 0; i < resourceNames.Length; ++i)
             {
-                LogDebug(resourceNames[i]);
+                var resourceName = resourceNames[i];
+                var fileName = resourceName.Substring("NickSeriesLogosMod.Images.".Length);
+                var id = fileName.Substring(0, fileName.IndexOf("."));
+                LogInfo($"Loading resource: \"{resourceName}\" for id: \"{id}\"");
+                Sprite imageSprite = SMU.Utilities.ImageHelper.LoadSpriteFromResources(resourceName);
+                logoSpritesDict.Add(id, imageSprite);
             }
         }
 
