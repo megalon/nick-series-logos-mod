@@ -41,7 +41,11 @@ namespace NickSeriesLogosMod.Patches
                     if (showId == null || showId.Equals(string.Empty)) continue;
 
                     // Skip if we don't have an image for this id
-                    if (!Plugin.logoSpritesDict.ContainsKey(showId)) continue;
+                    if (!Plugin.logoSpritesDict.ContainsKey(showId))
+                    {
+                        Plugin.LogWarning($"No image found for show \"{showId}\". Skipping...");
+                        continue;
+                    }
 
                     try
                     {
@@ -55,7 +59,7 @@ namespace NickSeriesLogosMod.Patches
                         Plugin.LogDebug($"Loaded image for show \"{showId}\"");
                     } catch
                     {
-                        Debug.LogWarning($"No image found for {showId}. Skipping...");
+                        Debug.LogError($"Could not load image for {showId}!");
                     }
                 }
             }
