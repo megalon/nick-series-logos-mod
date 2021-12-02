@@ -7,6 +7,7 @@ using BepInEx.Configuration;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System.Collections;
 
 namespace NickSeriesLogosMod
 {
@@ -35,6 +36,11 @@ namespace NickSeriesLogosMod
             logoSpritesDict = new Dictionary<string, Sprite>();
 
             // Load all the image resources
+            StartCoroutine(LoadImages());
+        }
+
+        IEnumerator LoadImages()
+        {
             var resourceNames = Assembly.GetExecutingAssembly().GetManifestResourceNames();
             for (int i = 0; i < resourceNames.Length; ++i)
             {
@@ -44,6 +50,7 @@ namespace NickSeriesLogosMod
                 LogInfo($"Loading resource: \"{resourceName}\" for id: \"{id}\"");
                 Sprite imageSprite = SMU.Utilities.ImageHelper.LoadSpriteFromResources(resourceName);
                 logoSpritesDict.Add(id, imageSprite);
+                yield return null;
             }
         }
 
