@@ -8,6 +8,6 @@ namespace NickSeriesLogosMod
     {
         public const string PLUGIN_GUID = "megalon.nick_series_logo_mod";
         public const string PLUGIN_NAME = "NickSeriesLogoMod";
-        public const string PLUGIN_VERSION = "2.0.0";
+        public const string PLUGIN_VERSION = "2.0.1";
     }
 }
